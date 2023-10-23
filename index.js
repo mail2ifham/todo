@@ -1,33 +1,33 @@
-import express from 'express'
+import express from "express";
 
+const app = express();
+const port = 3000;
+const workList = [];
+const todayList = [];
 
-const app = express()
-const port= 3000
-const itemList = []
-
-app.use(express.static("public"))
-app.use(express.urlencoded({extended:true}))
+app.use(express.static("public"));
+app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
-    res.render('index.ejs',{itemList:itemList,})
-})
+  res.render("index.ejs", { itemList: todayList });
+});
 app.get("/work", (req, res) => {
-    res.render("work.ejs")
-})
+  res.render("work.ejs", { itemList: workList });
+});
 
-app.post("/", (req, res) =>{
-    const newItem = req.body["add-felid"];
-    itemList.push(newItem)
-    res.render('index.ejs',{itemList:itemList})
-})
 
-app.post("/work", (req, res) =>{
-    const newItem = req.body["add-felid"];
-    itemList.push(newItem)
-    res.render('work.ejs',{itemList:itemList})
-})
-
+app.post("/addItem", (req, res) => {
+  const key = Object.keys(req.body)[0];
+  const newItem = req.body[key];
+  if (key === "today-add-felid") {
+    todayList.push(newItem);
+    res.redirect("/");
+  } else {
+    workList.push(newItem);
+    res.redirect("/work");
+  }
+});
 
 app.listen(port, () => {
-    console.log(`Listen to port ${port}...`);
-} )
+  console.log(`Listen to port ${port}...`);
+});
