@@ -1,10 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/styles/main.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@500;800&family=Tilt+Neon&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/styles/main.css" />
 
     <title>TODO</title>
-</head>
-<body>
+  </head>
+  <body>
+    <header>
+      <nav class="nav">
+        <a href="/"> <i class="fa-solid fa-calendar-days icon"></i>Today</a>
+        <a href="/work"><i class="fa-solid fa-briefcase icon"></i>Work</a>
+      </nav>
+
+    </header>
+    <main>
+      <section class="heading-section">
+        <div class="heading">
+            <h1 class="heading-main">
+              <%= new Date().toLocaleDateString("en-us",{ weekday: "long",month:
+              "short",day: "numeric"}) %>
+            </h1>
+            <h3 class="heading-sub">Today</h3>
+        </div>
+      </section>

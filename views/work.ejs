@@ -1,31 +1,21 @@
 <%- include('partials/header.ejs') %>
 
-<header>
-  <a href="/">Today</a>
-  <a href="/work">Work</a>
 
-  <section class="headig">
-    <h1 class="heading-main"><%= new Date().toLocaleDateString("en-us",{ weekday: "long",month: "short",day: "numeric"}) %></h1>
-    <h3 class="heading-sub">Work</h3>
-  </section>
-</header>
-
-<main>
   <section class="card">
-    <form method="post" action="/addItem">
-      <label for="work-add-felid">Add New Item</label>
-      <input type="text" name="work-add-felid" id="work-add-felid" autofocus placeholder="New Item">
-      <button type="submit" class="submit-button" onclick="test()">ADD</button>
-    </form>
       <ul>
         <% locals.itemList  && itemList.forEach((item, id) => { %>
         <li  id=<%= `item${id}` %>> 
             <input id=<%= id %> type="checkbox" onclick="check(this.id)" name=<%= item %> >
-            <label for="<%= item %>"><%= item %></label>
+            <label for="<%= id %>"><%= item %></label>
          </li>
         <% }) %>
 
       </ul>
+    <form method="post" action="/addItem">
+      <label for="work-add-felid">Add New Item</label>
+      <input type="text" name="work-add-felid" id="work-add-felid" autofocus placeholder="New Item">
+      <button type="submit" class="submit-button">ADD</button>
+    </form>
   </section>
 
   <script type="text/javascript" src="/main.js"></script>
